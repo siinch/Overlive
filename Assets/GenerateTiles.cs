@@ -5,7 +5,7 @@ using UnityEngine;
 public class GenerateTiles : MonoBehaviour
 {
     public static GenerateTiles GameMain;
-    public static int size = 10;
+    public static int size = 8;
     int xbegin;
     int ybegin;
     int xend;
@@ -22,6 +22,7 @@ public class GenerateTiles : MonoBehaviour
       yend = size;
 
       TileColorPicker.seed = Random.Range(-999999.0F, 999999.0F);
+      TileColorPicker.seed2 = Random.Range(-999999.0F, 999999.0F);
       for(int x = xbegin; x <= xend; x++)
         for(int y = ybegin; y <= yend; y++)
           Instantiate(tile, new Vector2(x, y), Quaternion.identity);

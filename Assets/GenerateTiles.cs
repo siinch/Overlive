@@ -12,6 +12,7 @@ public class GenerateTiles : MonoBehaviour
     int yend;
     public GameObject tile;
     public GameObject player;
+    public GameObject tree;
     // Start is called before the first frame update
     void Start()
     {

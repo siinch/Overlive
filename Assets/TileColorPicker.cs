@@ -50,8 +50,19 @@ public class TileColorPicker : MonoBehaviour
       }
       if(noise2 < 0.5f) // plains
         spriteRenderer.color = new Color(147.0f/255.0f, 1.0f, 84.0f/255.0f);
-      else // forests
+      else {// forests
+
+        float noise3 = 0;
+        for (int i = 0; i < octaves.Length; i++) {
+          noise3 +=
+          amplitutes[i]*(Mathf.PerlinNoise(10*octaves[i]*x, 10*octaves[i]*y)
+          + Mathf.PerlinNoise(seed2+10*octaves[i]*x, seed2+10*octaves[i]*y)) / 2;
+        }
+        if(noise3 < 0.5f && Random.Range(0.0f, 1.0f) < 0.5)
+          Instantiate(GenerateTiles.GameMain.tree, transform.position, Quaternion.identity);
+
         spriteRenderer.color = new Color(0.0f, 0.6f, 0.0f);
+      }
     }
 
     // Update is called once per frame.

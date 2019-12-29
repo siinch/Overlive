@@ -44,6 +44,29 @@ public class TileColorPicker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+      var player = GenerateTiles.GameMain.player.transform.position;
+      if(transform.position.x > (player.x + GenerateTiles.size)) {
+        Instantiate(GenerateTiles.GameMain.tile, new Vector2(transform.position.x - GenerateTiles.size * 2, transform.position.y), Quaternion.identity);
+        Destroy(gameObject);
+        this.enabled = false;
+      }
+      else if(transform.position.x < (player.x - GenerateTiles.size)) {
+        Instantiate(GenerateTiles.GameMain.tile, new Vector2(transform.position.x + GenerateTiles.size * 2, transform.position.y), Quaternion.identity);
+        Destroy(gameObject);
+        this.enabled = false;
+      }
+      else if(transform.position.y < (player.y - GenerateTiles.size)) {
+        Instantiate(GenerateTiles.GameMain.tile, new Vector2(transform.position.x, transform.position.y + GenerateTiles.size * 2), Quaternion.identity);
+        Destroy(gameObject);
+        this.enabled = false;
+      }
+      else if(transform.position.y > (player.y + GenerateTiles.size)) {
+        Instantiate(GenerateTiles.GameMain.tile, new Vector2(transform.position.x, transform.position.y - GenerateTiles.size * 2), Quaternion.identity);
+        Destroy(gameObject);
+        this.enabled = false;
+      }
+      /*if(Vector3.Distance(transform.position, player) > 100)
+        Destroy(gameObject);
+        this.enabled = false;*/
     }
 }

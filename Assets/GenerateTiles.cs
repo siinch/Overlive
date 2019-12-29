@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class GenerateTiles : MonoBehaviour
 {
-    int size = 100;
+    public static GenerateTiles GameMain;
+    public static int size = 10;
     int xbegin;
     int ybegin;
     int xend;
     int yend;
     public GameObject tile;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
+      GameMain = this;
       xbegin = -size;
       ybegin = -size;
       xend = size;

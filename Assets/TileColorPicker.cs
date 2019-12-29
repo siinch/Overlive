@@ -54,7 +54,7 @@ public class TileColorPicker : MonoBehaviour
         spriteRenderer.color = new Color(0.0f, 0.6f, 0.0f);
     }
 
-    // Update is called once per frame
+    // Update is called once per frame.
     void Update()
     {
       var player = GenerateTiles.GameMain.player.transform.position;

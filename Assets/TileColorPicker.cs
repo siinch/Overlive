@@ -18,10 +18,9 @@ public class TileColorPicker : MonoBehaviour
 
     void Start()
     {
+      float x = transform.position.x;
+      float y = transform.position.y;
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        float x = transform.position.x;
-        float y = transform.position.y;
         float noise = 0;
         for (int i = 0; i < octaves.Length; i++) {
           noise +=
@@ -29,30 +28,30 @@ public class TileColorPicker : MonoBehaviour
           + Mathf.PerlinNoise(seed+scale*octaves[i]*x, seed+scale*octaves[i]*y)) / 2; // divide by 2 to avoid symmetric effect
         }
 
-        float noise2 = 0;
-        for (int i = 0; i < octaves.Length; i++) {
-          noise2 +=
-          amplitutes[i]*(Mathf.PerlinNoise(scale*octaves[i]*x, scale*octaves[i]*y)
-          + Mathf.PerlinNoise(seed2+scale*octaves[i]*x, seed2+scale*octaves[i]*y)) / 2;
-        }
-
-        //noise = noise / octaves.Length;
-
-        //noise = (noise + Mathf.PerlinNoise(1000+x, 1000+y)) / 2;
-
-        if(noise < 0.49F)
+        if(noise < 0.49F) // water
           spriteRenderer.color = new Color(0, 0, 1);
-        else if (0.49f <= noise && noise < 0.5f)
+        else if (0.49f <= noise && noise < 0.5f) // sand
           spriteRenderer.color = new Color(1.0f, 241.0f/255.0f, 168.0f/255.0f);
         else {
-          if(noise2 < 0.5f)
-            spriteRenderer.color = new Color(0, 1, 0);
-          else
-            spriteRenderer.color = new Color(0.7f, 0.7f, 0.7f);
+          DrawLand();
         }
+    }
+    /* biomes
 
-
-          //spriteRenderer.color = new Color(noise, noise, noise);
+    */
+    void DrawLand() {
+      float x = transform.position.x;
+      float y = transform.position.y;
+      float noise2 = 0;
+      for (int i = 0; i < octaves.Length; i++) {
+        noise2 +=
+        amplitutes[i]*(Mathf.PerlinNoise(scale*octaves[i]*x, scale*octaves[i]*y)
+        + Mathf.PerlinNoise(seed2+scale*octaves[i]*x, seed2+scale*octaves[i]*y)) / 2;
+      }
+      if(noise2 < 0.5f) // plains
+        spriteRenderer.color = new Color(147.0f/255.0f, 1.0f, 84.0f/255.0f);
+      else // forests
+        spriteRenderer.color = new Color(0.0f, 0.6f, 0.0f);
     }
 
     // Update is called once per frame

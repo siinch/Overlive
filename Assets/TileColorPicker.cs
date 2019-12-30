@@ -58,8 +58,8 @@ public class TileColorPicker : MonoBehaviour
           amplitutes[i]*(Mathf.PerlinNoise(10*octaves[i]*x, 10*octaves[i]*y)
           + Mathf.PerlinNoise(seed2+10*octaves[i]*x, seed2+10*octaves[i]*y)) / 2;
         }
-        if(noise3 < 0.5f && Random.Range(0.0f, 1.0f) < 0.5)
-          Instantiate(GenerateTiles.GameMain.tree, transform.position, Quaternion.identity);
+        if(noise3 < 0.5f)
+          Instantiate(GenerateTiles.GameMain.tree, transform.position, Quaternion.identity).transform.SetParent(transform);
 
         spriteRenderer.color = new Color(0.0f, 0.6f, 0.0f);
       }
@@ -70,19 +70,19 @@ public class TileColorPicker : MonoBehaviour
     {
       var player = GenerateTiles.GameMain.player.transform.position;
       if(transform.position.x > (player.x + GenerateTiles.size)) {
-        Instantiate(GenerateTiles.GameMain.tile, new Vector2(transform.position.x - GenerateTiles.size * 2, transform.position.y), Quaternion.identity);
+        Instantiate(GenerateTiles.GameMain.tile, new Vector3(transform.position.x - GenerateTiles.size * 2 -1, transform.position.y, transform.position.y), Quaternion.identity);
         Destroy(gameObject);
       }
       else if(transform.position.x < (player.x - GenerateTiles.size)) {
-        Instantiate(GenerateTiles.GameMain.tile, new Vector2(transform.position.x + GenerateTiles.size * 2, transform.position.y), Quaternion.identity);
+        Instantiate(GenerateTiles.GameMain.tile, new Vector3(transform.position.x + GenerateTiles.size * 2 + 1, transform.position.y, transform.position.y), Quaternion.identity);
         Destroy(gameObject);
       }
       else if(transform.position.y < (player.y - GenerateTiles.size)) {
-        Instantiate(GenerateTiles.GameMain.tile, new Vector2(transform.position.x, transform.position.y + GenerateTiles.size * 2), Quaternion.identity);
+        Instantiate(GenerateTiles.GameMain.tile, new Vector3(transform.position.x, transform.position.y + GenerateTiles.size * 2 + 1, transform.position.y + GenerateTiles.size * 2 + 1), Quaternion.identity);
         Destroy(gameObject);
       }
       else if(transform.position.y > (player.y + GenerateTiles.size)) {
-        Instantiate(GenerateTiles.GameMain.tile, new Vector2(transform.position.x, transform.position.y - GenerateTiles.size * 2), Quaternion.identity);
+        Instantiate(GenerateTiles.GameMain.tile, new Vector3(transform.position.x, transform.position.y - GenerateTiles.size * 2 - 1, transform.position.y + GenerateTiles.size * 2 - 1), Quaternion.identity);
         Destroy(gameObject);
       }
       /*if(Vector3.Distance(transform.position, player) > 100)

@@ -23,5 +23,6 @@ public class MoveCamera : MonoBehaviour
 
       //transform.position = transform.position + input * speed * Time.deltaTime;
       rb.velocity = input * speed;
+      transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);
     }
 }

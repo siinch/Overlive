@@ -239,6 +239,7 @@ MonoBehaviour:
   tile: {fileID: 3001454534185838178, guid: e6630b0e1a34015dc882bc2c7c643ffb, type: 3}
   player: {fileID: 1960119548}
   tree: {fileID: 1846090324728772135, guid: 2ebbeaa406f8c5436ac0f64ea318e823, type: 3}
+  sapling: {fileID: 1962980783545941825, guid: ae108496e08e22d9e89985285af6b755, type: 3}
 --- !u!4 &568645569
 Transform:
   m_ObjectHideFlags: 0

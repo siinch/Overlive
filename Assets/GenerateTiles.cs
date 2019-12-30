@@ -13,6 +13,7 @@ public class GenerateTiles : MonoBehaviour
     public GameObject tile;
     public GameObject player;
     public GameObject tree;
+    public GameObject sapling;
     // Start is called before the first frame update
     void Start()
     {

@@ -48,8 +48,19 @@ public class TileColorPicker : MonoBehaviour
         amplitutes[i]*(Mathf.PerlinNoise(scale*octaves[i]*x, scale*octaves[i]*y)
         + Mathf.PerlinNoise(seed2+scale*octaves[i]*x, seed2+scale*octaves[i]*y)) / 2;
       }
-      if(noise2 < 0.5f) // plains
+      if(noise2 < 0.5f) {// plains
         spriteRenderer.color = new Color(147.0f/255.0f, 1.0f, 84.0f/255.0f);
+
+        float noise4 = 0;
+        float sapscale = 100.1f;
+        for (int i = 0; i < octaves.Length; i++) {
+          noise4 +=
+          amplitutes[i]*(Mathf.PerlinNoise(sapscale*octaves[i]*x, sapscale*octaves[i]*y)
+          + Mathf.PerlinNoise(seed2+sapscale*octaves[i]*x, seed2+sapscale*octaves[i]*y)) / 2;
+        }
+        if(noise4 < 0.28f)
+          Instantiate(GenerateTiles.GameMain.sapling, transform.position, Quaternion.identity).transform.SetParent(transform);
+      }
       else {// forests
 
         float noise3 = 0;
